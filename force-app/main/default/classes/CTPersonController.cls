@@ -1,5 +1,12 @@
 
 public with sharing class CTPersonController {
+    
+    /**
+     * generate unique token using mobile number
+     * use MD5 algorithm to generate one-way hash
+     * @param mobile
+     * @return string token
+     */
     public static String getToken(String mobileNumber) {
         Blob hashToken = Crypto.generateDigest('MD5', Blob.valueOf(mobileNumber));
         return EncodingUtil.base64Encode(hashToken);
