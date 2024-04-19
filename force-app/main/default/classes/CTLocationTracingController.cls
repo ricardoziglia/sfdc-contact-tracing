@@ -48,4 +48,46 @@ public with sharing class CTLocationTracingController {
         ];
     }
 
+    /**
+     * Check duplicate Location Tracing records
+     * @param locationTraces - List of location traces to be checked.
+     * @return List<Location_Tracing__c> duplicated records.
+     */
+    public static List<Location_Tracing__c> checkDuplicates(List<Location_Tracing__c> locationTraces) {
+        List<Location_Tracing__c> duplicates = new List<Location_Tracing__c>();
+        Map<Id, Set<Id>> mapOfExistingRecord = new Map<Id, Set<Id>>();
+        Set<Id> locationIds = new Set<Id>();
+        Set<Id> personIds = new Set<Id>();
+
+        for (Location_Tracing__c trace : locationTraces) {
+            locationIds.add(trace.Location__c);
+            personIds.add(trace.Person__c);
+        }
+
+        List<Location_Tracing__c> existingRecords = [
+            SELECT Id, Location__c, Person__c 
+            FROM Location_Tracing__c 
+            WHERE Location__c IN :locationIds
+            OR Person__c IN :personIds
+        ];
+
+        if (existingRecords != null && existingRecords.size() > 0) {
+            for (Location_Tracing__c trace : existingRecords) {
+                if (!mapOfExistingRecord.containsKey(trace.Location__c)) {
+                    mapOfExistingRecord.put(trace.Location__c, new Set<Id>());
+                }
+                mapOfExistingRecord.get(trace.Location__c).add(trace.Person__c);
+            }
+
+            for (Location_Tracing__c trace : locationTraces) {
+                // check if record is duplicate
+                if ((mapOfExistingRecord.containsKey(trace.Location__c) && mapOfExistingRecord.get(trace.Location__c).contains(trace.Person__c))) {
+                    duplicates.add(trace);
+                }
+            }
+        }
+        return duplicates;
+    }
+
+
 }
