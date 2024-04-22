@@ -54,4 +54,30 @@ public with sharing class CTLocationController {
 
         return null;
     }
+
+    /**
+     * @description Gets the count of each status.
+     * @return   return
+     */
+    public static Map<String, Integer> getStatusCount() {
+        AggregateResult[] statusCount = [
+            SELECT 
+                Status__c, COUNT(Id) statusTotal 
+            FROM Location__c 
+            GROUP BY Status__c
+        ];
+
+        if (statusCount != null && statusCount.size() > 0) {
+            Map<String, Integer> statusCountMap = new Map<String, Integer>();
+            for (AggregateResult ar : statusCount) {
+                statusCountMap.put(
+                    String.valueOf(ar.get('Status__c')), 
+                    Integer.valueOf(ar.get('statusTotal'))
+                );
+            }
+            return statusCountMap;
+        }
+
+        return null;        
+    }
 }

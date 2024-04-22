@@ -70,7 +70,7 @@ public with sharing class CTPersonController {
     }
 
     /**
-     * @description Gets the count of each heath status.
+     * @description Gets the total count of each health status;
      * @return   return
      */
     public static Map<String, Integer> getHealthStatusCount() {
@@ -83,7 +83,7 @@ public with sharing class CTPersonController {
 
         if (healthStatusCount != null && healthStatusCount.size() > 0) {
             Map<String, Integer> healthStatusCountMap = new Map<String, Integer>();
-            for (AggregateResult ar: healthStatusCount) {
+            for (AggregateResult ar : healthStatusCount) {
                 healthStatusCountMap.put(
                     String.valueOf(ar.get('Health_Status__c')), 
                     Integer.valueOf(ar.get('statusTotal'))
