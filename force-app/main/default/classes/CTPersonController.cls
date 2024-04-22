@@ -74,8 +74,7 @@ public with sharing class CTPersonController {
      * @return   return
      */
     public static Map<String, Integer> getHealthStatusCount() {
-        Map<String, Integer> healthStatusCount = new Map<String, Integer>();
-        AggregateResult[] aggregateResults = [
+        AggregateResult[] healthStatusCount = [
             SELECT 
                 Health_Status__c, COUNT(Id) statusTotal
             FROM Person__c
@@ -83,13 +82,14 @@ public with sharing class CTPersonController {
         ];
 
         if (healthStatusCount != null && healthStatusCount.size() > 0) {
-            for (AggregateResult result: aggregateResults) {
-                healthStatusCount.put(
-                    String.valueOf(result.get('Health_Status__c')), 
-                    Integer.valueOf(result.get('statusTotal'))
+            Map<String, Integer> healthStatusCountMap = new Map<String, Integer>();
+            for (AggregateResult ar: healthStatusCount) {
+                healthStatusCountMap.put(
+                    String.valueOf(ar.get('Health_Status__c')), 
+                    Integer.valueOf(ar.get('statusTotal'))
                 );
             }
-            return healthStatusCount;
+            return healthStatusCountMap;
         }
 
         return null;        
