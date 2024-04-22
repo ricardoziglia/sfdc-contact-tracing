@@ -50,8 +50,8 @@ public with sharing class CTLocationController {
 
         if (locations != null && locations.size() > 0) {
             return locations[0];
-        } else {
-            return null;
         }
+
+        return null;
     }
 }

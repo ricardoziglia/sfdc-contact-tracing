@@ -64,8 +64,34 @@ public with sharing class CTPersonController {
 
         if (people != null && people.size() > 0) {
             return people[0];
-        } else {
-            return null;
         }
+        
+        return null;
+    }
+
+    /**
+     * @description Gets the count of each heath status.
+     * @return   return
+     */
+    public static Map<String, Integer> getHealthStatusCount() {
+        Map<String, Integer> healthStatusCount = new Map<String, Integer>();
+        AggregateResult[] aggregateResults = [
+            SELECT 
+                Health_Status__c, COUNT(Id) statusTotal
+            FROM Person__c
+            GROUP BY Health_Status__c
+        ];
+
+        if (healthStatusCount != null && healthStatusCount.size() > 0) {
+            for (AggregateResult result: aggregateResults) {
+                healthStatusCount.put(
+                    String.valueOf(result.get('Health_Status__c')), 
+                    Integer.valueOf(result.get('statusTotal'))
+                );
+            }
+            return healthStatusCount;
+        }
+
+        return null;        
     }
 }
