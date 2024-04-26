@@ -5,9 +5,9 @@ public with sharing class CTLocationTriggerHandler {
         }
     }
 
-    public static void beforeUpdate(List<Location__c> updatedRecords, Map<Id, Location__c> oldValues) {
+    public static void beforeUpdate(List<Location__c> updatedRecords, Map<Id, Location__c> oldRecordsMap) {
         for (Location__c location : updatedRecords) {
-            if (location.Status__c != oldValues.get(location.Id).Status__c) {
+            if (location.Status__c != oldRecordsMap.get(location.Id).Status__c) {
                 location.Status_Update_Date__c = Date.today();
             }
         }
