@@ -1,4 +1,4 @@
-trigger CTLocationTrigger on Location__c (before insert, before update, before delete, after insert, after update, after undelete) {
+trigger CTLocationTrigger on Location__c (before insert, before update, after insert, after update) {
 
     switch on Trigger.operationType {
         when BEFORE_INSERT {
