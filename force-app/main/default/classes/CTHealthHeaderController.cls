@@ -1,12 +1,12 @@
 public with sharing class CTHealthHeaderController {
     
     @AuraEnabled
-    public static Map<String, Integer> getPersonHealthStatusCount() {
+    public static Map<String, Integer> getPersonHealthStatuscount(){
         return CTPersonController.getHealthStatusCount();
     }
 
     @AuraEnabled
-    public static Map<String, Integer> getLocationHealthStatusCount() {
-        return CTLocationController.getStatusCount();
+    public static Map<String, Integer> getLocationHealthStatuscount(){
+        return CTLocationController.getHealthStatusCount();
     }
 }

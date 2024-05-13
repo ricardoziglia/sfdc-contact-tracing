@@ -59,7 +59,7 @@ public with sharing class CTLocationController {
      * @description Gets the count of each status.
      * @return   return
      */
-    public static Map<String, Integer> getStatusCount() {
+    public static Map<String, Integer> getHealthStatusCount() {
         AggregateResult[] statusCount = [
             SELECT 
                 Status__c, COUNT(Id) statusTotal 
