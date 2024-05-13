@@ -1,5 +1,7 @@
 <aura:component>
-    <aura:attribute name="headerTitle" type="String" />
+    <aura:attribute name="viewType" type="String" access="public"/>
+    <aura:attribute name="headerTitle" type="String" access="private"/>
+    <aura:handler name="change" value="{!v.viewType}" action="{!c.viewTypeChange}"/>
     <div class="slds-page-header slds-page-header_record-home">
         <div class="slds-page-header__row">
             <div class="slds-page-header__col-title">
@@ -27,7 +29,7 @@
                     <div class="slds-page-header__control">
                         <ul class="slds-button-group-list">
                             <li>
-                                <button class="slds-button slds-button_neutral">Add New</button>
+                                <lightning:button aura:id="addNewButton" variant="neutral" label="Add New" title="Add New" onclick="{!c.createRecord}"/>
                             </li>
                         </ul>
                     </div>

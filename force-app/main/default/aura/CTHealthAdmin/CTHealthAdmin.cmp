@@ -1,16 +1,16 @@
 <aura:component implements="force:appHostable">
-    <aura:attribute name="headerTitle" type="String" default="Person View"/>
+    <aura:attribute name="viewType" type="String" default="person"/>
 
     <lightning:layout multipleRows="true">
         <lightning:layoutItem size="12">
-            <c:CTHealthHeader aura:id="health-header" headerTitle="{!v.headerTitle}"></c:CTHealthHeader>
+            <c:CTHealthHeader aura:id="health-header" viewType="{!v.viewType}"></c:CTHealthHeader>
         </lightning:layoutItem>
         <lightning:layoutItem size="12">
             <lightning:tabset variant="vertical" onselect="{!c.tabsetSelectHandler}">
-                <lightning:tab label="Person View" id="person_view">
+                <lightning:tab label="Person View" id="person">
                     Person View
                 </lightning:tab>
-                <lightning:tab label="Location View" id="location_view">
+                <lightning:tab label="Location View" id="location">
                     Location View
                 </lightning:tab>
             </lightning:tabset>
