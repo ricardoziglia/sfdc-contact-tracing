@@ -1,5 +1,5 @@
 ({
-    viewTypeChange : function(component, event, helper) {
+    onChangeViewType : function(component, event, helper) {
         if (event.getParam("value") === "person") {
             component.set("v.headerTitle", "Person View");
         } else {
@@ -13,5 +13,8 @@
             "entityApiName": entityApiName
         });
         createRecordEvent.fire();
+    },
+    doInit: function (component, event, helper) {
+        helper.fetchHealthyStatusCount(component);
     }
 })
