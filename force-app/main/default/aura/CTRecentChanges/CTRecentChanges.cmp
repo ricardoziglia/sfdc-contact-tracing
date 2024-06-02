@@ -1,12 +1,11 @@
 <aura:component controller="CTRecentChangesController">
     <!-- attributes -->
-    <aura:attribute name="viewType" type="String" access="public"/>
+    <aura:attribute name="viewType" type="String" access="public" default="person"/>
     <aura:attribute name="data" type="Object"/>
     <aura:attribute name="columns" type="List"/>
 
     <!-- handlers-->
     <aura:handler name="init" value="{! this }" action="{! c.doInit }"/>
-    <aura:handler name="change" value="{!v.viewType}" action="{!c.onChangeViewType}"/>
 
     <lightning:card  title="Recent Updates">
         <aura:set attribute="actions">
