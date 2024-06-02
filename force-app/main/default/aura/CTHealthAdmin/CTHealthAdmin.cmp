@@ -8,7 +8,7 @@
         <lightning:layoutItem size="12">
             <lightning:tabset variant="vertical" onselect="{!c.tabsetSelectHandler}">
                 <lightning:tab label="Person View" id="person">
-                    Person View
+                    <c:CTRecentChanges></c:CTRecentChanges>
                 </lightning:tab>
                 <lightning:tab label="Location View" id="location">
                     Location View
