@@ -3,7 +3,8 @@
         const selectedTabId = event.getParam("id");
         component.set("v.viewType", selectedTabId);
 
-        const healthHeaderComp = component.find("health-header");
-        healthHeaderComp.fetchCount();
+        // Calling it from CTHealthHeader component via onChangeViewType, letting the component handle it internally.
+        // const healthHeaderComp = component.find("health-header");
+        // healthHeaderComp.fetchCount();
     }
 })
