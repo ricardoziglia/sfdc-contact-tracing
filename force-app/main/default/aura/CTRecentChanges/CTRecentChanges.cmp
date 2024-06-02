@@ -2,7 +2,9 @@
     <!-- attributes -->
     <aura:attribute name="viewType" type="String" access="public" default="person"/>
     <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="lastRecentHealthChangesResponse" type="Object"/>
     <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="issearching" type="Boolean" default="false"/>
 
     <!-- handlers-->
     <aura:handler name="init" value="{! this }" action="{! c.doInit }"/>
@@ -15,6 +17,7 @@
                     name="enter-search"
                     label="Search when user hits the 'enter' key"
                     type="search"
+                    isLoading="{! v.issearching }"
                 />
             </div>
         </aura:set>

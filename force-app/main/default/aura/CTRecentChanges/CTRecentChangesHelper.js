@@ -27,6 +27,7 @@
             if (state === "SUCCESS") {
                 const resp = response.getReturnValue();
                 component.set("v.data", resp);
+                component.set("v.lastRecentHealthChangesResponse", resp);
             }
         });
         $A.enqueueAction(action);
@@ -39,8 +40,12 @@
             if (state === "SUCCESS") {
                 const resp = response.getReturnValue();
                 component.set("v.data", resp);
+                component.set("v.issearching", false);
+            } else {
+                component.set("v.issearching", false);
             }
         });
+        component.set("v.issearching", true);
         $A.enqueueAction(action);
     }
 });
