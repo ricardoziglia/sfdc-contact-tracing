@@ -11,7 +11,14 @@
                     <c:CTRecentChanges viewType="person"></c:CTRecentChanges>
                 </lightning:tab>
                 <lightning:tab label="Location View" id="location">
-                    <c:CTRecentChanges viewType="location"></c:CTRecentChanges>
+                    <lightning:layout>
+                        <lightning:layoutItem size="8" padding="horizontal-small">
+                            <c:CTRecentChanges viewType="location"></c:CTRecentChanges>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="4" padding="horizontal-small"> 
+                            <c:CTLocationView /> 
+                        </lightning:layoutItem>
+                    </lightning:layout>
                 </lightning:tab>
             </lightning:tabset>
         </lightning:layoutItem>
